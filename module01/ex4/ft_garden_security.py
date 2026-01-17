@@ -8,15 +8,15 @@ class Plant:
         if height < 0:
             print(f"\nInvalid operation attempted: height {height} [REJECTED]")
             print("Security: Negative height rejected")
-            return
-        self.__height = height
+        else:
+            self.__height = height
 
     def set_age(self, age):
         if age < 0:
             print(f"\nInvalid operation attempted: age {age} [REJECTED]")
             print("Security: Negative age rejected")
-            return
-        self.__age = age
+        else:
+            self.__age = age
 
     def get_height(self):
         return self.__height
@@ -25,7 +25,7 @@ class Plant:
         return self.__age
 
 
-marijuana = Plant("marijuana", 20, 30)
+marijuana = Plant("Marijuana", 20, 30)
 
 print("=== Garden Security System ===")
 
@@ -37,3 +37,5 @@ print(f"Height updated: {marijuana.get_height()} cm [OK]")
 print(f"Age updated: {marijuana.get_age()} days [OK]")
 
 marijuana.set_height(-12)
+
+print(f"\nCurrent plant: {marijuana.name} ({marijuana.get_height()}cm, {marijuana.get_age()} days)")

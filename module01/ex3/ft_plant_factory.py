@@ -4,17 +4,21 @@ class Plant:
         self.height = height
         self.age = age
 
-    def details(self):
-        print(f"Created: {self.name} ({self.height} cm, {self.age} days)")
+    def __str__(self):
+        return f"Created: {self.name} ({self.height} cm, {self.age} days)"
 
 
-rose = Plant("Rose", 12, 150)
-lotus = Plant("Lutos", 15, 678)
-marijuana = Plant("Marijuana", 97, 300)
-vanilla = Plant("Vanilla", 18, 89)
-coca = Plant("Coca", 30, 78)
+plants_data = [
+    ("Rose", 12, 150),
+    ("Lotus", 15, 678),
+    ("Marijuana", 97, 300),
+    ("Vanilla", 18, 89),
+    ("Coca", 30, 78),
+]
 
-plants = [rose, lotus, marijuana, vanilla, coca]
+plants = []
 
-for plant in plants:
-    plant.details()
+for name, height, age in plants_data:
+    new_plant = Plant(name, height, age)
+    print(new_plant)
+    plants.append(new_plant)
