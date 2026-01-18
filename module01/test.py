@@ -1,13 +1,30 @@
-class Animal:
 
-    def eat(self):
-        print("The animal is eating")
+class Engine:
+    def __init__(self, brand,hp, volume):
+        self.brand = brand
+        self.hp = hp
+        self.volume = volume
 
-class Rabit(Animal):
+class Front_Glass:
+    def __init__(self, brand, length, width):
+        self.brand = brand
+        self.length = length
+        self.width = width
 
-    def eat(self):
-        print("The rabbit is eating")
+class Back_Glass(Front_Glass):
+    def __init__(self, brand, length, width):
+        super().__init__(brand, length, width)
 
-rabbit = Rabit()
+class Car:
+    def __init__(self, brand, module):
+        self.module = module
+        self.brand = brand
+        self.components = []
 
-rabbit.eat()
+    def add_component(self, component):
+        self.components.append(component)
+        print(f"New component added : {component} to the {self.brand} {self.module}")
+
+
+
+
