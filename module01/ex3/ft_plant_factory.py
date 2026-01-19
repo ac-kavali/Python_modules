@@ -18,7 +18,10 @@ plants_data = [
 
 plants = []
 
+print("=== Plant Factory Output ===")
 for name, height, age in plants_data:
     new_plant = Plant(name, height, age)
     print(new_plant)
     plants.append(new_plant)
+
+print(f"\nTotal plant created: {len(plants)}")
