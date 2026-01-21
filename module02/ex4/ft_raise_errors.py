@@ -1,48 +1,57 @@
-class plant_name_error(ValueError):
+class PlantNameError(ValueError):
     pass
 
-class water_level_error(ValueError):
+
+class WaterLevelError(ValueError):
     pass
 
-class sunlight_error(ValueError):
+
+class SunlightError(ValueError):
     pass
+
 
 def check_plant_name(name):
     if len(name) == 0:
-        raise plant_name_error("Error: Plant name cannot be empty!")
-    else:
-        pass
+        raise PlantNameError("Error: Plant name cannot be empty!")
+
 
 def check_water_level(level):
     if level < 0:
-        raise water_level_error(f"Water level {level} is too low (min 0)")
+        raise WaterLevelError(f"Water level {level} is too low (min 0)")
     elif level > 10:
-        raise water_level_error(f"Water level {level} is too hight (max 10)")
-    else:
-        pass
+        raise WaterLevelError(f"Water level {level} is too high (max 10)")
+
 
 def check_sunlight_hours(hours):
     if hours < 2:
-        raise sunlight_error(f"Error: Sunlight hours {hours} is too low (min 2)")
+        raise SunlightError(f"Error: Sunlight hours {hours} is too low (min 2)")
     if hours > 12:
-        raise sunlight_error(f"Error: Sunlight hours {hours} is too low (min 2)")
+        raise SunlightError(f"Error: Sunlight hours {hours} is too high (max 12)")
+
 
 def check_plant_health(plant_name, water_level, sunlight_hours):
-    print("=== Garden Plant Health Checker ===\n")
     try:
         check_plant_name(plant_name)
-    except Exception as e:
-        print(e)
-    try:
         check_water_level(water_level)
-    except Exception as e:
-        print(e)
-    try:
         check_sunlight_hours(sunlight_hours)
     except Exception as e:
         print(e)
+    else:
+        print(f"Plant {plant_name} is healthy!")
 
-    print
+
+print("=== Garden Plant Health Checker ===\n")
 
 print("Testing good values...")
+check_plant_health("Tomato", 7, 5)
 
+print("\nTesting empty plant name...")
+check_plant_health("", 7, 5)
+
+print("\nTesting bad water level...")
+check_plant_health("Tomato", 15, 5)
+
+print("\nTesting bad sunlight hours...")
+check_plant_health("Tomato", 7, 0)
+
+print("\nAll error raising tests completed!")
