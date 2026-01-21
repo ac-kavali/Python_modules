@@ -24,9 +24,9 @@ def check_water_level(level):
 
 def check_sunlight_hours(hours):
     if hours < 2:
-        raise SunlightError(f"Error: Sunlight hours {hours} is too low (min 2)")
+        raise SunlightError(f"Sunlight hours {hours} is too low (min 2)")
     if hours > 12:
-        raise SunlightError(f"Error: Sunlight hours {hours} is too high (max 12)")
+        raise SunlightError(f"Sunlight hours {hours} is too high (max 12)")
 
 
 def check_plant_health(plant_name, water_level, sunlight_hours):
@@ -35,7 +35,7 @@ def check_plant_health(plant_name, water_level, sunlight_hours):
         check_water_level(water_level)
         check_sunlight_hours(sunlight_hours)
     except Exception as e:
-        print(e)
+        print(f"Error: {e}")
     else:
         print(f"Plant {plant_name} is healthy!")
 
