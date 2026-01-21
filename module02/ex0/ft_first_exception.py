@@ -9,11 +9,14 @@ def check_temperature():
     if value < 0:
         print("The temperature is too cold (min 0°C)!")
         return None
+
     if value > 40:
         print("The temperature is too hot (max 40°C)!")
         return None
+
     print(f"Temperature {value}°C is perfect for plants!")
     return value
+
 
 if __name__ == '__main__':
     check_temperature()

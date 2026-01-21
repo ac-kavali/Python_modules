@@ -1,5 +1,12 @@
-def test_error_types(error):
+def garden_operations():
+    print("== Garden Error Types Demo ===\n")
+    test_error_types()
+    print("All error types tested successfully!")
+
+
+def error_handler(error):
     err_type = type(error).__name__
+
     if err_type == 'ValueError':
         print("Caught ValueError: invalid literal for int()\n")
 
@@ -10,34 +17,42 @@ def test_error_types(error):
         print("Caught FileNotFoundError: No such file 'missing.txt'\n")
 
     if err_type == 'KeyError':
-        print("Caught KeyError: 'missing\_plant'")
+        print("Caught KeyError: 'missing_plant'\n")
 
-def garden_operations():
+
+def test_error_types():
     my_dict = {'name': "KV", 'age': 19}
+
     try:
         print("Testing ValueError...")
-        value = int("abc")
+        int("abc")
     except Exception as e:
-        test_error_types(e)
+        error_handler(e)
 
     try:
         print("Testing ZeroDivisionError...")
-        value = 10 / 0
+        10 / 0
     except Exception as e:
-        test_error_types(e)
+        error_handler(e)
 
     try:
         print("Testing FileNotFoundError...")
         open("missing.txt")
     except Exception as e:
-        test_error_types(e)
+        error_handler(e)
 
     try:
         print("Testing KeyError...")
         print(my_dict["plant"])
     except Exception as e:
-        test_error_types(e)
+        error_handler(e)
 
+    try:
+        print("Testing multiple errors together...")
+        int("abc")
+        5 / 0
+    except Exception:
+        print("Caught an error, but program continues!\n")
 
 
 if __name__ == '__main__':
