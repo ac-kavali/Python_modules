@@ -15,6 +15,5 @@ def check_temperature():
     print(f"Temperature {value}°C is perfect for plants!")
     return value
 
-
-
-check_temperature()
+if __name__ == '__main__':
+    check_temperature()
