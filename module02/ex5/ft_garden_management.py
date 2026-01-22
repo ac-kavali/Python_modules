@@ -53,7 +53,7 @@ class GardenManager:
         except PlantNameError as e:
             print(f"Error adding plant: {e}")
 
-    def water_plants (self):
+    def water_plants(self):
         try:
             if self.tank_level < 6:
                 raise GardenError("Not enough water in tank")
