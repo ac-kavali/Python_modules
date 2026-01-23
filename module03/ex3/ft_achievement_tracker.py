@@ -11,7 +11,11 @@ bob = {"first_kill",
        "boss_slayer",
        "collector"}
 
-charlie = {"level_10", "treasure_hunter", "boss_slayer", "speed_demon", "perfectionist"}
+charlie = {"level_10",
+           "treasure_hunter",
+           "boss_slayer",
+           "speed_demon",
+           "perfectionist"}
 
 print("Player alice achievements:", alice)
 print("Player bob achievements:", bob)
@@ -40,6 +44,6 @@ rare = all_achievements.difference(shared_any)
 print("Rare achievements (1 player):", rare)
 
 # Player comparisons
-print("\nzAlice vs Bob common:", alice.intersection(bob))
-print("Alice unique:", alice.difference(bob))
-print("Bob unique:", bob.difference(alice))
+print("\nAlice vs Bob common:", alice.intersection(bob))
+print("Alice vs bob unique:", alice.difference(bob))
+print("charlie vs alice unique:", bob.difference(alice))
