@@ -3,6 +3,8 @@ import math
 
 
 def calculate_distance(p1, p2):
+    """This function unpack the two coordinates tuples and
+    use the formula to calculate the distance"""
     x1, y1, z1 = p1
     x2, y2, z2 = p2
 
