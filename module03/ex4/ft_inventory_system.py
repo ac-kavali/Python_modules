@@ -1,25 +1,25 @@
-# ft_inventory_system.py
+print("=== Player Inventory System ===\n")
 
-print("=== Player Inventory System ===")
+# Inventories using dict()
+alice = dict()
+alice.update({
+    "sword": dict(type="weapon", rarity="rare", quantity=1, price=500),
+    "potion": dict(type="consumable", rarity="common", quantity=5, price=50),
+    "shield": dict(type="armor", rarity="uncommon", quantity=1, price=200)
+})
 
-# -------------------------
-# Inventories (nested dictionaries)
-# -------------------------
-alice = {
-    "sword": {"type": "weapon", "rarity": "rare", "quantity": 1, "price": 500},
-    "potion": {"type": "consumable", "rarity": "common", "quantity": 5, "price": 50},
-    "shield": {"type": "armor", "rarity": "uncommon", "quantity": 1, "price": 200},
-}
+bob = dict()
 
-bob = {}
-
-# -------------------------
 # Display Alice's inventory
-# -------------------------
 print("=== Alice's Inventory ===")
 total_value = 0
 item_count = 0
-categories = {}
+categories = {
+    "weapon": 0,
+    "consumable": 0,
+    "armor": 0
+}
+
 
 for name, data in alice.items():
     qty = data.get("quantity")
@@ -30,45 +30,39 @@ for name, data in alice.items():
     total = qty * price
     total_value += total
     item_count += qty
-    categories[type_] = categories.get(type_, 0) + qty
+    categories[type_] = categories[type_] + qty
+    print(f"{name} ({type_}, {rarity}): {qty}x @ {price}"
+          f" gold each = {total} gold")
 
-    print(f"{name} ({type_}, {rarity}): {qty}x @ {price} gold each = {total} gold")
-
-print(f"Inventory value: {total_value} gold")
+print(f"\nInventory value: {total_value} gold")
 print(f"Item count: {item_count} items")
+
+# print categories
 print("Categories:", end=" ")
 for cat, qty in categories.items():
     print(f"{cat}({qty})", end=", ")
 print("\n")
 
-# -------------------------
 # Transaction: Alice gives Bob 2 potions
-# -------------------------
-print("=== Transaction: Alice gives Bob 2 potions ===")
+print("\n=== Transaction: Alice gives Bob 2 potions ===")
 
-# Simple version: subtract and assign directly
-alice["potion"]["quantity"] -= 2
+# Direct subtraction
+alice["potion"].update({"quantity": alice["potion"].get("quantity") - 2})
 
-bob["potion"] = {
-    "type": "consumable",
-    "rarity": "common",
-    "quantity": 2,
-    "price": 50
-}
+# Add to Bob using dict() and update()
+bob["potion"] = dict()
+bob["potion"].update(dict(type="consumable", rarity="common",
+                          quantity=2, price=50))
 
 print("Transaction successful!")
 
-# -------------------------
 # Updated inventories
-# -------------------------
-print("=== Updated Inventories ===")
-print("Alice potions:", alice["potion"]["quantity"])
-print("Bob potions:", bob["potion"]["quantity"])
+print("\n=== Updated Inventories ===")
+print("Alice potions:", alice["potion"].get("quantity"))
+print("Bob potions:", bob["potion"].get("quantity"))
 
-# -------------------------
 # Inventory Analytics
-# -------------------------
-print("=== Inventory Analytics ===")
+print("\n=== Inventory Analytics ===")
 
 # Calculate Alice stats
 alice_value = 0

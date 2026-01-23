@@ -9,9 +9,7 @@ def calculate_distance(p1, p2):
     x2, y2, z2 = p2
 
     distance = math.sqrt(
-        (x2 - x1) ** 2
-        + (y2 - y1) ** 2
-        + (z2 - z1) ** 2
+        (x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2
     )
     return distance
 
@@ -24,7 +22,7 @@ def parse_coordinates(arg, coords):
         numbers = numbers.split(", ")
         coords = tuple(int(x) for x in numbers)
         return coords
-    except ValueError as e:
+    except (ValueError, KeyError) as e:
         print(f"Error parsing coordinates: {e}")
         print(
             f'Error details - Type: {type(e).__name__} '
