@@ -22,11 +22,16 @@ def parse_coordinates(arg, coords):
         return coords
 
 
+
+
+
 def unpacking_demonstration(latest_coords):
     print("\nUnpacking demonstration:")
     x, y, z = latest_coords
     print(f"Player at x={x}, y={y}, z={z}")
     print(f"Coordinates: X={x}, Y={y}, Z={z}")
+
+
 
 coordinates = initial_position = (0, 0, 0)
 
