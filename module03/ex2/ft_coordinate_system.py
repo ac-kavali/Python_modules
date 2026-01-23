@@ -21,10 +21,6 @@ def parse_coordinates(arg, coords):
         print(f'Error details - Type: {type(e).__name__} Args: ("{e}")')
         return coords
 
-
-
-
-
 def unpacking_demonstration(latest_coords):
     print("\nUnpacking demonstration:")
     x, y, z = latest_coords
