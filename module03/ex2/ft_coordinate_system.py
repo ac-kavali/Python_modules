@@ -17,10 +17,12 @@ def calculate_distance(p1, p2):
 
 
 def parse_coordinates(arg, coords):
+    """This function parse the argument and except the ValueError
+    if occurred and avoid old coordinates to be corrupted"""
     try:
-        numbers_str = arg.split("(")[1].split(")")[0]  # chained method calls
-        numbers_list = numbers_str.split(", ")
-        coords = tuple(int(x) for x in numbers_list)
+        numbers = arg.split("(")[1].split(")")[0]
+        numbers = numbers.split(", ")
+        coords = tuple(int(x) for x in numbers)
         return coords
     except ValueError as e:
         print(f"Error parsing coordinates: {e}")
