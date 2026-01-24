@@ -11,7 +11,6 @@ def game_event_generator(total_events):
         action = actions[i % len(actions)]
         yield f"Event {i}: Player {player} (level {level}) {action}"
 
-
 def fibonacci_generator(n):
     """Yield first n Fibonacci numbers."""
     a, b = 0, 1
