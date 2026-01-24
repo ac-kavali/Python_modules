@@ -11,7 +11,7 @@ if len(sys.argv) == 1:
 else:
     scores = []
 
-    # Read and validate arguments
+    # Read and validate arguments with slice start
     for arg in sys.argv[1:]:
         try:
             score = int(arg)
@@ -19,20 +19,21 @@ else:
         except ValueError:
             print(f"Invalid score detected: {arg}")
             print("Please provide only numeric scores.")
-            sys.exit(1)
 
-    total_players = len(scores)
-    total_score = sum(scores)
-    average_score = total_score / total_players
-    high_score = max(scores)
-    low_score = min(scores)
-    score_range = high_score - low_score
+    # Only proceed if we have at least one valid score
+    if scores:
+        total_players = len(scores)
+        total_score = sum(scores)
+        average_score = total_score / total_players
+        high_score = max(scores)
+        low_score = min(scores)
+        score_range = high_score - low_score
 
-    # Output
-    print(f"Scores processed: {scores}")
-    print(f"Total players: {total_players}")
-    print(f"Total score: {total_score}")
-    print(f"Average score: {average_score}")
-    print(f"High score: {high_score}")
-    print(f"Low score: {low_score}")
-    print(f"Score range: {score_range}")
+        # Output
+        print(f"Scores processed: {scores}")
+        print(f"Total players: {total_players}")
+        print(f"Total score: {total_score}")
+        print(f"Average score: {average_score}")
+        print(f"High score: {high_score}")
+        print(f"Low score: {low_score}")
+        print(f"Score range: {score_range}")

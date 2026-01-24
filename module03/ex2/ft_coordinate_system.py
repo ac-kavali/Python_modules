@@ -22,7 +22,7 @@ def parse_coordinates(arg, coords):
         numbers = numbers.split(", ")
         coords = tuple(int(x) for x in numbers)
         return coords
-    except (ValueError, KeyError) as e:
+    except ValueError as e:
         print(f"Error parsing coordinates: {e}")
         print(
             f'Error details - Type: {type(e).__name__} '
@@ -49,9 +49,8 @@ print(
     f"and {coordinates}: "
     f"{calculate_distance(initial_position, coordinates):.1f}"
 )
-
-# Parsing new input coordinates and calculate distance
-coordinates = parse_coordinates(input("\nParsing coordinates:"), coordinates)
+string_coordinates = '"(10, 27, 12)"'
+coordinates = parse_coordinates(string_coordinates, coordinates)
 print(f"Parsed position: {coordinates}")
 print(
     f"Distance between {initial_position} "

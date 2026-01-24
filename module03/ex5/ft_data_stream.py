@@ -1,7 +1,5 @@
-# ft_data_stream.py
 import time
 
-# === Generators ===
 
 def game_event_generator(total_events):
     """Yield game events one by one."""
@@ -9,9 +7,10 @@ def game_event_generator(total_events):
     actions = ["killed monster", "found treasure", "leveled up"]
     for i in range(1, total_events + 1):
         player = players[i % len(players)]
-        level = (i * 3) % 20 + 1
+        level = i % 20 + 1
         action = actions[i % len(actions)]
         yield f"Event {i}: Player {player} (level {level}) {action}"
+
 
 def fibonacci_generator(n):
     """Yield first n Fibonacci numbers."""
@@ -19,6 +18,7 @@ def fibonacci_generator(n):
     for _ in range(n):
         yield a
         a, b = b, a + b
+
 
 def prime_generator(n):
     """Yield first n prime numbers."""
@@ -29,10 +29,12 @@ def prime_generator(n):
         for i in range(2, num):
             if num % i == 0:
                 is_prime = False
+                break
         if is_prime:
             yield num
             count += 1
         num += 1
+
 
 # === Main program ===
 
@@ -48,11 +50,11 @@ def main():
 
     start_time = time.time()
 
-    # Create generator
-    game_event_generator(total_events)
-
-    for event in game_event_generator(total_events):
+    # Process events
+    for event_number, event in zip(range(1, total_events + 1),
+                                   game_event_generator(total_events)):
         print(event)
+
         # Simple analytics
         if "level" in event:
             level_str = event.split("level ")[1].split(")")[0]
@@ -75,24 +77,28 @@ def main():
     print(f"Processing time: {elapsed_time:.3f} seconds")
 
     print("\n=== Generator Demonstration ===")
+
+    # Fibonacci sequence
     fib_gen = fibonacci_generator(10)
     print("Fibonacci sequence (first 10):", end=" ")
-    for i, num in enumerate(fib_gen):
-        if i != 0:
+    first_item = True
+    for num in fib_gen:
+        if not first_item:
             print(",", end=" ")
         print(num, end="")
+        first_item = False
     print()
 
-    prime_gen = prime_generator(5)
+    # Prime numbers
     print("Prime numbers (first 5):", end=" ")
-    for i, num in enumerate(prime_gen):
-        if i != 0:
+    first_item = True
+    for num in prime_generator(5):
+        if not first_item:
             print(",", end=" ")
         print(num, end="")
+        first_item = False
     print()
 
-    print("\nHow do generators enable memory-efficient processing?")
-    print("→ They produce data on-demand, never storing all items in memory at once.")
 
 if __name__ == "__main__":
     main()
