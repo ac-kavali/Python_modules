@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from typing import Any, List
+from typing import Any
 
 
 class DataProcessor(ABC):
@@ -22,7 +22,7 @@ class NumericProcessor(DataProcessor):
             return True
         except Exception:
             try:
-                _ = data + 1
+                data + 1
                 return True
             except Exception:
                 return False
@@ -91,13 +91,13 @@ class LogProcessor(DataProcessor):
 def main() -> None:
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===")
 
-    processors: List[DataProcessor] = [
+    processors = [
         NumericProcessor(),
         TextProcessor(),
         LogProcessor()
     ]
 
-    samples: List[Any] = [
+    samples = [
         [1, 2, 3, 4, 5],
         "Hello Nexus World",
         "ERROR: Connection timeout"
@@ -105,8 +105,7 @@ def main() -> None:
 
     names = ["Numeric", "Text", "Log"]
 
-    i = 0
-    while i < len(processors):
+    for i in range(3):
         print("\nInitializing " + names[i] + " Processor...")
         print("Processing data:", samples[i])
 
@@ -114,16 +113,12 @@ def main() -> None:
         print("Validation complete")
         print(processors[i].format_output(result))
 
-        i += 1
-
     print("\n=== Polymorphic Processing Demo ===")
     print("Processing multiple data types through same interface...")
 
-    i = 0
-    while i < len(processors):
+    for i in range(3):
         result = processors[i].process(samples[i])
         print("Result " + str(i + 1) + ": " + result)
-        i += 1
 
     print("\nFoundation systems online. Nexus ready for advanced streams.")
 
