@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
-from typing import Any, List, Dict, Union, Optional
+from typing import Any, List
 
-#The Core Class of abstracting Methods
+
 class DataProcessor(ABC):
     @abstractmethod
     def process(self, data: Any) -> str:
@@ -14,16 +14,16 @@ class DataProcessor(ABC):
     def format_output(self, result: str) -> str:
         return f"Output: {result}"
 
-# process numeric data
+
 class NumericProcessor(DataProcessor):
     def process(self, data: Any) -> str:
         if not self.validate(data):
             raise ValueError("Invalid numeric data")
 
-        if isinstance(data, list):
+        try:
             total = sum(data)
             count = len(data)
-        else:
+        except TypeError:
             total = data
             count = 1
 
@@ -34,9 +34,15 @@ class NumericProcessor(DataProcessor):
         )
 
     def validate(self, data: Any) -> bool:
-        if isinstance(data, list):
-            return all(isinstance(x, (int, float)) for x in data)
-        return isinstance(data, (int, float))
+        try:
+            _ = data + 0
+            return True
+        except TypeError:
+            try:
+                sum(data)
+                return True
+            except TypeError:
+                return False
 
 
 class TextProcessor(DataProcessor):
@@ -52,7 +58,11 @@ class TextProcessor(DataProcessor):
         )
 
     def validate(self, data: Any) -> bool:
-        return isinstance(data, str)
+        try:
+            data.split()
+            return True
+        except AttributeError:
+            return False
 
 
 class LogProcessor(DataProcessor):
@@ -67,9 +77,11 @@ class LogProcessor(DataProcessor):
         return f"[{level}] {level} level detected: {message}"
 
     def validate(self, data: Any) -> bool:
-        if not isinstance(data, str):
+        try:
+            data.split(":", 1)
+            return True
+        except AttributeError:
             return False
-        return ":" in data
 
 
 def main() -> None:
@@ -96,3 +108,19 @@ def main() -> None:
         try:
             result = processor.process(data)
             print("Validation: Data verified")
+            print(processor.format_output(result))
+        except Exception as exc:
+            print(f"Error: {exc}")
+
+    print("\n=== Polymorphic Processing Demo ===")
+    print("Processing multiple data types through same interface...")
+
+    for i, processor in enumerate(processors, start=1):
+        result = processor.process(samples[i - 1])
+        print(f"Result {i}: {result}")
+
+    print("\nFoundation systems online. Nexus ready for advanced streams.")
+
+
+if __name__ == "__main__":
+    main()
