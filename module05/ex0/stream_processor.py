@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import Any, List, Dict, Union, Optional
 
-
+#The Core Class of abstracting Methods
 class DataProcessor(ABC):
     @abstractmethod
     def process(self, data: Any) -> str:
