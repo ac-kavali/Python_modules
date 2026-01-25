@@ -20,11 +20,11 @@ class NumericProcessor(DataProcessor):
         try:
             sum(data)
             return True
-        except Exception:
+        except:
             try:
                 data + 1
                 return True
-            except Exception:
+            except:
                 return False
 
     def process(self, data: Any) -> str:
@@ -34,7 +34,7 @@ class NumericProcessor(DataProcessor):
         try:
             total = sum(data)
             count = len(data)
-        except Exception:
+        except:
             total = data
             count = 1
 
@@ -51,7 +51,7 @@ class TextProcessor(DataProcessor):
         try:
             data.split()
             return True
-        except Exception:
+        except:
             return False
 
     def process(self, data: Any) -> str:
@@ -74,7 +74,7 @@ class LogProcessor(DataProcessor):
             if len(parts) == 2:
                 return True
             return False
-        except Exception:
+        except:
             return False
 
     def process(self, data: Any) -> str:
