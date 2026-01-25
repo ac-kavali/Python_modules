@@ -34,13 +34,13 @@ class NumericProcessor(DataProcessor):
         try:
             total = sum(data)
             count = len(data)
-        except:
+        except:         # this to handle the error of a single num, Error:this is not iterable.
             total = data
             count = 1
 
         avg = total / count
         return (
-            "Processed " + str(count) +
+            "Processed " + str(count) +             # type casting because they ask to return int.
             " numeric values, sum=" + str(total) +
             ", avg=" + str(avg)
         )
