@@ -12,77 +12,80 @@ class DataProcessor(ABC):
         pass
 
     def format_output(self, result: str) -> str:
-        return f"Output: {result}"
+        return "Output: " + result
 
 
 class NumericProcessor(DataProcessor):
+    def validate(self, data: Any) -> bool:
+        try:
+            sum(data)
+            return True
+        except Exception:
+            try:
+                _ = data + 1
+                return True
+            except Exception:
+                return False
+
     def process(self, data: Any) -> str:
         if not self.validate(data):
-            raise ValueError("Invalid numeric data")
+            return "Invalid numeric data"
 
         try:
             total = sum(data)
             count = len(data)
-        except TypeError:
+        except Exception:
             total = data
             count = 1
 
         avg = total / count
         return (
-            f"Processed {count} numeric values, "
-            f"sum={total}, avg={avg}"
+            "Processed " + str(count) +
+            " numeric values, sum=" + str(total) +
+            ", avg=" + str(avg)
         )
-
-    def validate (self, data: Any) -> bool:
-        try:
-            if hasattr(data, "__iter__"):
-                total = 0
-                for x in data:
-                    total += x
-            else:
-                _ = data * 1
-            return True
-        except Exception:
-            return False
 
 
 class TextProcessor(DataProcessor):
-    def process(self, data: Any) -> str:
-        if not self.validate(data):
-            raise ValueError("Invalid text data")
-
-        char_count = len(data)
-        word_count = len(data.split())
-        return (
-            f"Processed text: {char_count} characters, "
-            f"{word_count} words"
-        )
-
     def validate(self, data: Any) -> bool:
         try:
             data.split()
             return True
-        except AttributeError:
+        except Exception:
             return False
+
+    def process(self, data: Any) -> str:
+        if not self.validate(data):
+            return "Invalid text data"
+
+        char_count = len(data)
+        word_count = len(data.split())
+
+        return (
+            "Processed text: " + str(char_count) +
+            " characters, " + str(word_count) + " words"
+        )
 
 
 class LogProcessor(DataProcessor):
-    def process(self, data: Any) -> str:
-        if not self.validate(data):
-            raise ValueError("Invalid log entry")
-
-        level, message = data.split(":", 1)
-        level = level.strip()
-        message = message.strip()
-
-        return f"[{level}] {level} level detected: {message}"
-
     def validate(self, data: Any) -> bool:
         try:
-            data.split(":", 1)
-            return True
-        except AttributeError:
+            parts = data.split(":", 1)
+            if len(parts) == 2:
+                return True
             return False
+        except Exception:
+            return False
+
+    def process(self, data: Any) -> str:
+        if not self.validate(data):
+            return "Invalid log entry"
+
+        parts = data.split(":", 1)
+        level = parts[0].strip()
+        message = parts[1].strip()
+
+        return "[" + level + "] " + level + " level detected: " + message
 
 
 def main() -> None:
@@ -91,34 +94,36 @@ def main() -> None:
     processors: List[DataProcessor] = [
         NumericProcessor(),
         TextProcessor(),
-        LogProcessor(),
+        LogProcessor()
     ]
 
     samples: List[Any] = [
         [1, 2, 3, 4, 5],
         "Hello Nexus World",
-        "ERROR: Connection timeout",
+        "ERROR: Connection timeout"
     ]
 
     names = ["Numeric", "Text", "Log"]
 
-    for name, processor, data in zip(names, processors, samples):
-        print(f"\nInitializing {name} Processor...")
-        print(f"Processing data: {data}")
+    i = 0
+    while i < len(processors):
+        print("\nInitializing " + names[i] + " Processor...")
+        print("Processing data:", samples[i])
 
-        try:
-            result = processor.process(data)
-            print("Validation: Data verified")
-            print(processor.format_output(result))
-        except Exception as exc:
-            print(f"Error: {exc}")
+        result = processors[i].process(samples[i])
+        print("Validation complete")
+        print(processors[i].format_output(result))
+
+        i += 1
 
     print("\n=== Polymorphic Processing Demo ===")
     print("Processing multiple data types through same interface...")
 
-    for i, processor in enumerate(processors, start=1):
-        result = processor.process(samples[i - 1])
-        print(f"Result {i}: {result}")
+    i = 0
+    while i < len(processors):
+        result = processors[i].process(samples[i])
+        print("Result " + str(i + 1) + ": " + result)
+        i += 1
 
     print("\nFoundation systems online. Nexus ready for advanced streams.")
 
