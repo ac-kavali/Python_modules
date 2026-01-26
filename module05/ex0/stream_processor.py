@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Any
+import sys
 
 
 class DataProcessor(ABC):
@@ -91,36 +92,42 @@ class LogProcessor(DataProcessor):
 def main() -> None:
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===")
 
-    processors = [
-        NumericProcessor(),
-        TextProcessor(),
-        LogProcessor()
-    ]
+    try:
+        a = NumericProcessor()
+        print(a.validate(3232332, 3 ))
+    except TypeError:
+        sys.stderr.write("This function takes just one argument")
 
-    samples = [
-        [1, 2, 3, 4, 5],
-        "Hello Nexus World",
-        "ERROR: Connection timeout"
-    ]
-
-    names = ["Numeric", "Text", "Log"]
-
-    for i in range(3):
-        print("\nInitializing " + names[i] + " Processor...")
-        print("Processing data:", samples[i])
-
-        result = processors[i].process(samples[i])
-        print("Validation complete")
-        print(processors[i].format_output(result))
-
-    print("\n=== Polymorphic Processing Demo ===")
-    print("Processing multiple data types through same interface...")
-
-    for i in range(3):
-        result = processors[i].process(samples[i])
-        print("Result " + str(i + 1) + ": " + result)
-
-    print("\nFoundation systems online. Nexus ready for advanced streams.")
+    # processors = [
+    #     NumericProcessor(),
+    #     TextProcessor(),
+    #     LogProcessor()
+    # ]
+    #
+    # samples = [
+    #     [1, 2, 3, 4, 5],
+    #     "Hello Nexus World",
+    #     "ERROR: Connection timeout"
+    # ]
+    #
+    # names = ["Numeric", "Text", "Log"]
+    #
+    # for i in range(3):
+    #     print("\nInitializing " + names[i] + " Processor...")
+    #     print("Processing data:", samples[i])
+    #
+    #     result = processors[i].process(samples[i])
+    #     print("Validation complete")
+    #     print(processors[i].format_output(result))
+    #
+    # print("\n=== Polymorphic Processing Demo ===")
+    # print("Processing multiple data types through same interface...")
+    #
+    # for i in range(3):
+    #     result = processors[i].process(samples[i])
+    #     print("Result " + str(i + 1) + ": " + result)
+    #
+    # print("\nFoundation systems online. Nexus ready for advanced streams.")
 
 
 if __name__ == "__main__":
