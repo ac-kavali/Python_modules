@@ -63,6 +63,7 @@ class SensorStream(DataStream):
             return "Sensor error: " + str(e)
 
 
+# =====================
 # Transaction Stream
 # =====================
 
@@ -87,4 +88,72 @@ class TransactionStream(DataStream):
                 + str(net)
             )
 
-        exce
+        except Exception as e:
+            return "Transaction error: " + str(e)
+
+
+# =====================
+# Event Stream
+# =====================
+
+class EventStream(DataStream):
+    def process_batch(self, data_batch: List[Any]) -> str:
+        try:
+            errors = 0
+
+            for event in data_batch:
+                if event == "error":
+                    errors = errors + 1
+
+            self.batches = self.batches + 1
+
+            return (
+                "Event analysis: "
+                + str(len(data_batch))
+                + " events, "
+                + str(errors)
+                + " error detected"
+            )
+
+        except Exception as e:
+            return "Event error: " + str(e)
+
+
+# =====================
+# Stream Processor
+# =====================
+
+class StreamProcessor:
+    def __init__(self) -> None:
+        self.streams = []
+
+    def add_stream(self, stream: DataStream) -> None:
+        self.streams.append(stream)
+
+    def process_all(self, batches: List[List[Any]]) -> None:
+        for i in range(len(self.streams)):
+            result = self.streams[i].process_batch(batches[i])
+            print(result)
+
+
+# =====================
+# Main
+# =====================
+
+if __name__ == "__main__":
+    print("=== SIMPLE POLYMORPHIC STREAM SYSTEM ===\n")
+
+    sensor = SensorStream("SENSOR_001")
+    transaction = TransactionStream("TRANS_001")
+    event = EventStream("EVENT_001")
+
+    processor = StreamProcessor()
+    processor.add_stream(sensor)
+    processor.add_stream(transaction)
+    processor.add_stream(event)
+
+    processor.process_all([
+        [{"temp": 22.5}, {"temp": 25.0}],
+        [{"buy": 100}, {"sell": 150}],
+        ["login", "error", "logout"]
+    ])
