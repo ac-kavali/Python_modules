@@ -2,9 +2,7 @@ from abc import ABC, abstractmethod
 from typing import Any, List, Dict, Union, Optional
 
 
-# =====================
 # Abstract Base Class
-# =====================
 
 class DataStream(ABC):
     def __init__(self, stream_id: str) -> None:
@@ -29,9 +27,7 @@ class DataStream(ABC):
         }
 
 
-# =====================
 # Sensor Stream
-# =====================
 
 class SensorStream(DataStream):
     def process_batch(self, data_batch: List[Any]) -> str:
@@ -63,9 +59,7 @@ class SensorStream(DataStream):
             return "Sensor error: " + str(e)
 
 
-# =====================
 # Transaction Stream
-# =====================
 
 class TransactionStream(DataStream):
     def process_batch(self, data_batch: List[Any]) -> str:
@@ -92,9 +86,7 @@ class TransactionStream(DataStream):
             return "Transaction error: " + str(e)
 
 
-# =====================
 # Event Stream
-# =====================
 
 class EventStream(DataStream):
     def process_batch(self, data_batch: List[Any]) -> str:
@@ -119,9 +111,7 @@ class EventStream(DataStream):
             return "Event error: " + str(e)
 
 
-# =====================
 # Stream Processor
-# =====================
 
 class StreamProcessor:
     def __init__(self) -> None:
@@ -136,9 +126,7 @@ class StreamProcessor:
             print(result)
 
 
-# =====================
 # Main
-# =====================
 
 if __name__ == "__main__":
     print("=== SIMPLE POLYMORPHIC STREAM SYSTEM ===\n")
