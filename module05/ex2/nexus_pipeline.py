@@ -3,17 +3,16 @@ from typing import Any, List, Dict, Union, Optional, Protocol
 from collections import defaultdict
 
 
-# =========================
+# --------------------------------
 # Stage Protocol (Duck Typing)
-# =========================
+# --------------------------------
 class ProcessingStage(Protocol):
     def process(self, data: Any) -> Any:
         ...
 
-
-# =========================
+# --------------------------------
 # Pipeline Base Class
-# =========================
+# --------------------------------
 class ProcessingPipeline(ABC):
     def __init__(self, pipeline_id: str) -> None:
         self.pipeline_id: str = pipeline_id
@@ -37,9 +36,9 @@ class ProcessingPipeline(ABC):
         ...
 
 
-# =========================
+# --------------------------------
 # Processing Stages
-# =========================
+# --------------------------------
 class InputStage:
     def process(self, data: Any) -> Any:
         print(f"Input: {data}")
@@ -60,9 +59,9 @@ class OutputStage:
         return data
 
 
-# =========================
+# --------------------------------
 # Adapters (Polymorphism)
-# =========================
+# --------------------------------
 class JSONAdapter(ProcessingPipeline):
     def process(self, data: Dict[str, Any]) -> str:
         result = self.run_stages(data)
@@ -85,9 +84,9 @@ class StreamAdapter(ProcessingPipeline):
         return f"Stream summary: {len(result)} readings, avg: {avg:.1f}°C"
 
 
-# =========================
+# --------------------------------
 # Nexus Manager
-# =========================
+# --------------------------------
 class NexusManager:
     def __init__(self) -> None:
         self.pipelines: List[ProcessingPipeline] = []
@@ -106,9 +105,9 @@ class NexusManager:
                 print("Recovery successful: Pipeline restored, processing resumed")
 
 
-# =========================
+# --------------------------------
 # MAIN EXECUTION
-# =========================
+# --------------------------------
 if __name__ == "__main__":
 
     print("=== CODE NEXUS - ENTERPRISE PIPELINE SYSTEM ===\n")
