@@ -46,6 +46,9 @@ class NumericProcessor(DataProcessor):
             ", avg=" + str(avg)
         )
 
+    def validate_message(self) -> None:
+        print("Validation: Numeric data verified")
+
 
 class TextProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
@@ -61,11 +64,13 @@ class TextProcessor(DataProcessor):
 
         char_count = len(data)
         word_count = len(data.split())
-
         return (
             "Processed text: " + str(char_count) +
             " characters, " + str(word_count) + " words"
         )
+
+    def validate_message(self) -> None:
+        print("Validation: Text data verified")
 
 
 class LogProcessor(DataProcessor):
@@ -85,11 +90,14 @@ class LogProcessor(DataProcessor):
         parts = data.split(":", 1)
         level = parts[0].strip()
         message = parts[1].strip()
-
         return "[" + level + "] " + level + " level detected: " + message
 
+    def validate_message(self) -> None:
+        print("Validation: Log Entry verified")
 
-def main() -> None:
+
+if __name__ == "__main__":
+
     print("=== CODE NEXUS - DATA PROCESSOR FOUNDATION ===")
 
     processors = [
@@ -111,7 +119,7 @@ def main() -> None:
         print("Processing data:", samples[i])
 
         result = processors[i].process(samples[i])
-        print("Validation complete")
+        processors[i].validate_message()
         print(processors[i].format_output(result))
 
     print("\n=== Polymorphic Processing Demo ===")
@@ -122,7 +130,3 @@ def main() -> None:
         print("Result " + str(i + 1) + ": " + result)
 
     print("\nFoundation systems online. Nexus ready for advanced streams.")
-
-
-if __name__ == "__main__":
-    main()
