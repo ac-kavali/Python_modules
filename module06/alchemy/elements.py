@@ -1,11 +1,11 @@
 def create_fire():
-    pass
+    print("Fire element created")
 
 def create_water():
-    pass
+    print("Water element created")
 
 def create_earth():
-    pass
+    print("Earth element created")
 
 def create_air():
-    pass
+    print("Earth element created")
