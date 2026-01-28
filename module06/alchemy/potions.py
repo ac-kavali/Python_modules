@@ -12,10 +12,11 @@ def strength_potion():
 
 
 def invisibility_potion():
-    return ("Invisibility potion brewed with "
-            "[air_result] and [water_result]")
+    return (f"Invisibility potion brewed with {elements.create_air()} "
+            f"and {elements.create_water()}")
 
 
 def wisdom_potion():
-    return ("Wisdom potion brewed with all "
-            "elements: [all_four_results]")
+    return (f"Wisdom potion brewed with all elements: {elements.create_fire()},"
+            f"{elements.create_water()}, {elements.create_earth()}, "
+            f"{elements.create_air()} ")
