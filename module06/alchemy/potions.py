@@ -17,6 +17,6 @@ def invisibility_potion():
 
 
 def wisdom_potion():
-    return (f"Wisdom potion brewed with all elements: {elements.create_fire()},"
-            f"{elements.create_water()}, {elements.create_earth()}, "
-            f"{elements.create_air()} ")
+    return (f"Wisdom potion brewed with all elements: "
+            f"{elements.create_fire()},{elements.create_water()}, "
+            f"{elements.create_earth()}, {elements.create_air()} ")

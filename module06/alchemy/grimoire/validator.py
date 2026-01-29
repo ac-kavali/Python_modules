@@ -1,4 +1,4 @@
-def validate_ingredients (ingredients: str) -> str:
+def validate_ingredients(ingredients: str) -> str:
     valid_ingredients = ["fire", "water", "earth", "air"]
 
     # split the input string by spaces to get each ingredient
