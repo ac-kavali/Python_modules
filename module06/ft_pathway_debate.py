@@ -1,4 +1,7 @@
-from alchemy.transmutation import lead_to_gold, stone_to_gem, philosophers_stone, elixir_of_life
+from alchemy.transmutation import (lead_to_gold,
+                                   stone_to_gem,
+                                   philosophers_stone,
+                                   elixir_of_life)
 import alchemy.transmutation
 
 print("=== Pathway Debate Mastery ===\n")
@@ -12,7 +15,9 @@ print(f"philosophers_stone(): {philosophers_stone()}")
 print(f"elixir_of_life: {elixir_of_life()}")
 
 print("\nTesting Package Access:")
-print(f"alchemy.transmutation.lead_to_gold(): {alchemy.transmutation.lead_to_gold()}")
-print(f"alchemy.transmutation.philosophers_stone(): {alchemy.transmutation.philosophers_stone()}")
+print(f"alchemy.transmutation.lead_to_gold(): "
+      f"{alchemy.transmutation.lead_to_gold()}")
+print(f"alchemy.transmutation.philosophers_stone(): "
+      f"{alchemy.transmutation.philosophers_stone()}")
 
-print("Both pathways work! Absolute: clear, Relative: concise")
+print("\nBoth pathways work! Absolute: clear, Relative: concise")
