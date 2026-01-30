@@ -12,7 +12,19 @@ class Card(ABC):
         pass
 
     def get_card_info (self) -> dict:
-        pass
+        info = {
+            "name": getattr(self, "name", None),
+            "cost": getattr(self, "cost", None),
+            "rarity": getattr(self, "rarity", None),
+        }
+        if hasattr(self, "attack"):
+            info["attack"] = self.attack
+        if hasattr(self, "health"):
+            info["health"] = self.health
+        return info
 
     def is_playable (self, available_mana: int) -> bool:
-        pass
+        if available_mana >= self.cost:
+            return True
+        else:
+            return False
