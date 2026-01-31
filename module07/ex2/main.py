@@ -19,4 +19,4 @@ print(f"Defense result result{card.defend(5)}")
 print(f"\nSpell cast: {card.cast_spell("Fireball", ["Enemy1", "Enemy2"])}")
 print(f"Mana channel:{card.channel_mana(3)}")
 
-print("Multiple interfaces implementation successful!")
+print("\nMultiple interfaces implementation successful!")
