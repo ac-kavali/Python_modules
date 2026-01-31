@@ -9,7 +9,7 @@ print("- Combatable: ['attack', 'defend', 'get_combat_stats']")
 print("- Magical: ['cast_spell', 'channel_mana', 'get_magic_stats']")
 
 # perform an attack (Create two cards The Attacker and Defender)
-card = EliteCard("Arcane Warrior", 4, "Legendary")
+card = EliteCard("Arcane Warrior", 4, "Legendary", 6)
 
 
 print(f"\nAttack result{card.attack({"name": "Enemy", "damage": 5, "combat_type": "melee"})}")
