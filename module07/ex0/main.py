@@ -5,7 +5,7 @@ print("=== DataDeck Card Foundation ===\n")
 
 print("Testing Abstract Base Class Design:")
 
-data =  {
+data = {
     'name': 'Fire Dragon',
     'cost': 5,
     'rarity': 'Legendary',
@@ -14,24 +14,27 @@ data =  {
          }
 card = CreatureCard(**data)
 
-print(f"CreatureCard Info:")
+print("CreatureCard Info:")
 print(card.get_card_info())
 
-#Test if Playable:
+# Test if Playable
 print("\nPlaying Fire Dragon with 6 mana available:")
 print(f"Playable: {card.is_playable(6)}")
 
 
-#Test Play Function With Game State
-game_state = {'card_played': card.name, 'mana_used': {card.cost},
-'effect': 'Creature summoned to battlefield'}
+# Test Play Function With Game State
+game_state = {
+    'card_played': card.name,
+    'mana_used': {card.cost},
+    'effect': 'Creature summoned to battlefield'
+    }
 print(f"Play result: {card.play(game_state)}")
 
-#Test Attack Function With Target Information
+# Test Attack Function With Target Information
 print("\nFire Dragon attacks Goblin Warrior:")
-print(card.attack_target({"name": "Goblin Warrior", "health" : 6}))
+print(card.attack_target({"name": "Goblin Warrior", "health": 6}))
 
-#Testing Insufficient MANA
+# Testing Insufficient MANA
 print("\nTesting insufficient mana (3 available):")
 print(f"Playable: {card.is_playable(3)}")
 

@@ -34,7 +34,7 @@ creature = CreatureCard(**Creature)
 spell = SpellCard(**Spell)
 artifact = ArtifactCard(**Artifact)
 
-#Add them All
+# Add them All
 my_deck.add_card(creature)
 my_deck.add_card(spell)
 my_deck.add_card(artifact)
@@ -42,13 +42,15 @@ my_deck.add_card(artifact)
 # Show Deck Status
 print(f"Deck stats: {my_deck.get_deck_stats()}\n")
 
-#Drew first card
+# Drew first card
+print(my_deck.draw_card())
+print()
+
+# Drew second card
+print(my_deck.draw_card())
+print()
+
+# Drew Third card
 print(my_deck.draw_card())
 
-#Drew second card
-print(my_deck.draw_card())
-
-#Drew Third card
-print(my_deck.draw_card())
-
-print("Polymorphism in action: Same interface, different card behaviors!")
+print("\nPolymorphism in action: Same interface, different card behaviors!")
