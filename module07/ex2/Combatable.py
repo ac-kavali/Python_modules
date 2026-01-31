@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 
+
 class Combatable(ABC):
     @abstractmethod
     def attack(self, target) -> dict:
@@ -10,5 +11,5 @@ class Combatable(ABC):
         pass
 
     @abstractmethod
-    def get_combat_stats (self) -> dict:
+    def get_combat_stats(self) -> dict:
         pass

@@ -2,16 +2,17 @@ from ex0.Card import Card
 from ex2.Magical import Magical
 from ex2.Combatable import Combatable
 
+
 class EliteCard(Card, Combatable, Magical):
     def __init__(self, name, cost: int, rarity: str, health: int):
         super().__init__(name, cost, rarity)
         self.health = health
         self.cost = cost
 
-    def play (self, game_state: dict) -> dict:
+    def play(self, game_state: dict) -> dict:
         pass
 
-    def attack (self, target) -> dict:
+    def attack(self, target) -> dict:
         return {
             "attacker": self.name,
             "target": target.get("name"),
@@ -29,7 +30,7 @@ class EliteCard(Card, Combatable, Magical):
             "still_alive": still_alive
         }
 
-    def cast_spell (self, spell_name: str, targets: list) -> dict:
+    def cast_spell(self, spell_name: str, targets: list) -> dict:
         return {
             "caster": self.name,
             "spell": spell_name,
@@ -37,17 +38,15 @@ class EliteCard(Card, Combatable, Magical):
             "mana_used": 4
         }
 
-
-
-    def channel_mana (self, amount: int) -> dict:
+    def channel_mana(self, amount: int) -> dict:
         mana = 10
         return {
             "channeled": amount,
             "total_mana": mana - amount
         }
 
-    def get_magic_stats (self) -> dict:
+    def get_magic_stats(self) -> dict:
         pass
 
-    def get_combat_stats (self) -> dict:
+    def get_combat_stats(self) -> dict:
         pass
