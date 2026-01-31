@@ -3,6 +3,11 @@ from ex2.Magical import Magical
 from ex2.Combatable import Combatable
 
 class EliteCard(Card, Combatable, Magical):
+    def __init__(self, name, cost: int, rarity: str, health: int, attack: int):
+        super().__init__(name, cost, rarity)
+        self.health = health
+        self.attack = attack
+
     def play (self, game_state: dict) -> dict:
         pass
 
