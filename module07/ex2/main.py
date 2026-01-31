@@ -9,11 +9,14 @@ print("- Combatable: ['attack', 'defend', 'get_combat_stats']")
 print("- Magical: ['cast_spell', 'channel_mana', 'get_magic_stats']")
 
 # perform an attack (Create two cards The Attacker and Defender)
+print("\nPlaying Arcane Warrior (Elite Card:\n")
 card = EliteCard("Arcane Warrior", 4, "Legendary", 6)
 
 
 print(f"\nAttack result{card.attack({"name": "Enemy", "damage": 5, "combat_type": "melee"})}")
-print(f"\nDefense result result{card.defend({"name": "Enemy", "damage": 5, "combat_type": "melee"})}")
+print(f"Defense result result{card.defend(5)}")
 
+print(f"\nSpell cast: {card.cast_spell("Fireball", ["Enemy1", "Enemy2"])}")
+print(f"Mana channel:{card.channel_mana(3)}")
 
-#{'attacker': 'Fire Dragon', 'target': 'Goblin Warrior', 'damage_dealt': 7, 'combat_resolved': True}
+print("Multiple interfaces implementation successful!")

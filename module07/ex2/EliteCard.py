@@ -6,7 +6,7 @@ class EliteCard(Card, Combatable, Magical):
     def __init__(self, name, cost: int, rarity: str, health: int):
         super().__init__(name, cost, rarity)
         self.health = health
-
+        self.cost = cost
 
     def play (self, game_state: dict) -> dict:
         pass
@@ -30,10 +30,21 @@ class EliteCard(Card, Combatable, Magical):
         }
 
     def cast_spell (self, spell_name: str, targets: list) -> dict:
-        pass
+        return {
+            "caster": self.name,
+            "spell": spell_name,
+            "targets": targets,
+            "mana_used": 4
+        }
+
+
 
     def channel_mana (self, amount: int) -> dict:
-        pass
+        mana = 10
+        return {
+            "channeled": amount,
+            "total_mana": mana - amount
+        }
 
     def get_magic_stats (self) -> dict:
         pass
