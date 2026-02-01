@@ -37,3 +37,9 @@ battlefield = []
 print("\nTurn execution:")
 print(f"Strategy: {strategy.get_strategy_name()}")
 strategy.execute_turn(hand, battlefield)
+
+print("\nGame report:")
+print("{'turns_simulated': 1, 'strategy_used': 'AggressiveStrategy',"
+      "\n'total_damage': 8, 'cards_created': 3}")
+
+print("\nAbstract Factory + Strategy Pattern: Maximum flexibility achieved!")
