@@ -13,9 +13,8 @@ print(f"Strategy: {strategy.get_strategy_name()}")
 print(f"Available types:{factory.get_supported_types()}")
 
 
-# Perform an aggressive turn
-print("Simulating aggressive turn...")
-print("\nhand = [Fire Dragon (5), Goblin Warrior (2), Lightning Bolt (3)]")
+# Simulating an aggressive turn using the game engine:
+print("\nSimulating aggressive turn...")
 
 # create a collection of cards by numbers
 cards = [
@@ -29,8 +28,12 @@ fantasy_card_collection = []
 for card_dict in cards:
     for name, number in card_dict.items():
         for _ in range(number):
-            card_obj = factory.create_creature(name)  # or create_spell if it's a spell
+            card_obj = factory.create_creature(name)
             fantasy_card_collection.append(card_obj)
 
 hand = fantasy_card_collection
-
+print("hand = [Fire Dragon (5), Goblin Warrior (2), Lightning Bolt (3)]")
+battlefield = []
+print("\nTurn execution:")
+print(f"Strategy: {strategy.get_strategy_name()}")
+strategy.execute_turn(hand, battlefield)

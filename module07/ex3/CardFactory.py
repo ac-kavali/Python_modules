@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from ex0.Card import Card
 
+
 class CardFactory (ABC):
     @abstractmethod
     def create_creature(self, name_or_power) -> Card:
@@ -15,9 +16,9 @@ class CardFactory (ABC):
         pass
 
     @abstractmethod
-    def create_themed_deck(self, size: int) -> dict:
+    def create_themed_deck(self, sized:int) -> dict:
         pass
 
     @abstractmethod
-    def get_supported_types (self) -> dict:
+    def get_supported_types(self) -> dict:
         pass

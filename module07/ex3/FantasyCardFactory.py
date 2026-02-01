@@ -23,20 +23,26 @@ class FantasyCardFactory(CardFactory):
     def create_artifact (self, name_or_power) -> Card:
         chosen = random.choice(Creature_data.artifacts)
         chosen["name"] = name_or_power
-        artifact_card = CreatureCard(**chosen)
+        artifact_card = ArtifactCard(**chosen)
         return artifact_card
 
     def create_themed_deck (self, size: int) -> dict:
-        types = ["creature", "spell", "artifact"]
-        card_type = random.choice(types)
+        random_cards = []
+        themed_deck = {}
+        for _ in range(size):
+            types = ["creature", "spell", "artifact"]   # Create random Deck with different types using random function
+            card_type = random.choice(types)
 
-        if card_type == "creature":
-            chosen = random.choice(Creature_data.creatures)
-        elif card_type == "spell":
-            chosen = random.choice(Creature_data.spells)
-        else:
-            chosen = random.choices(Creature_data.artifacts)
-        return chosen
+            if card_type == "creature":
+                chosen = random.choice(Creature_data.creatures)
+            elif card_type == "spell":
+                chosen = random.choice(Creature_data.spells)
+            else:
+                chosen = random.choices(Creature_data.artifacts)
+            random_cards.append(chosen)
+        for card in random_cards:
+            themed_deck.update(card)
+        return themed_deck
 
 
     def get_supported_types (self) -> dict:
