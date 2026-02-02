@@ -4,6 +4,7 @@ import site
 
 
 python_path = sys.executable
+print(f"This is the sys.executable: {sys.executable}")
 
 prefix = sys.prefix
 base_prefix = sys.base_prefix
