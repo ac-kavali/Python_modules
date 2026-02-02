@@ -1,7 +1,8 @@
 from ex3.GameStrategy import GameStrategy
 
+
 class AggressiveStrategy(GameStrategy):
-    def execute_turn (self, hand: list, battlefield: list) -> dict:
+    def execute_turn(self, hand: list, battlefield: list) -> dict:
         cards_played = []
         targets_attacked = []
         mana_used = 0
@@ -32,7 +33,7 @@ class AggressiveStrategy(GameStrategy):
     def get_strategy_name(self) -> str:
         return "AggressiveStrategy"
 
-    def prioritize_targets (self, available_targets: list) -> list:
+    def prioritize_targets(self, available_targets: list) -> list:
         creatures = [t for t in available_targets if t != "Enemy Player"]
         player = [t for t in available_targets if t == "Enemy Player"]
         return creatures + player

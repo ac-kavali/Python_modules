@@ -16,7 +16,7 @@ class CardFactory (ABC):
         pass
 
     @abstractmethod
-    def create_themed_deck(self, sized:int) -> dict:
+    def create_themed_deck(self, sized: int) -> dict:
         pass
 
     @abstractmethod

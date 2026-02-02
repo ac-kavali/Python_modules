@@ -42,7 +42,8 @@ leaderboard = platform.get_leaderboard()
 
 for index, card in enumerate(leaderboard, start=1):
     print(
-        f"{index}. {card['name']} - Rating: {card['rating']} ({card['record']})"
+        f"{index}. {card['name']} - Rating: {card['rating']}"
+        f" ({card['record']})"
     )
 
 print("Platform Report:")
@@ -50,4 +51,3 @@ print(platform.generate_tournament_report(), "\n")
 
 print("=== Tournament Platform Successfully Deployed! ===")
 print("All abstract patterns working together harmoniously!")
-

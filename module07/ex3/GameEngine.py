@@ -3,11 +3,12 @@ from ex3.CardFactory import CardFactory
 
 
 class GameEngine:
-    def __init__ (self):
+    def __init__(self):
         self.strategy = None
         self.factory = None
 
-    def configure_engine (self, factory: CardFactory, strategy: GameStrategy) -> None:
+    def configure_engine(self, factory: CardFactory,
+                         strategy: GameStrategy) -> None:
         # assign dependencies
         self.factory = factory
         self.strategy = strategy
@@ -18,9 +19,9 @@ class GameEngine:
         print(f"GameStrategy: {strategy.__class__.__name__}")
         print("Engine configured successfully.")
 
-    def simulate_turn (self) -> dict:
+    def simulate_turn(self) -> dict:
         if not hasattr(self, "factory") or not hasattr(self, "strategy"):
-            raise RuntimeError("Engine is not configured. Call configure_engine() first.")
+            raise RuntimeError("Engine Not configured")
 
         # 1. Create cards for this turn
         cards = self.factory.create_cards()
@@ -44,9 +45,9 @@ class GameEngine:
 
         return result
 
-    def get_engine_status (self) -> dict:
+    def get_engine_status(self) -> dict:
         return {
-            "configured": hasattr(self, "factory") and hasattr(self, "strategy"),
+            "configured": hasattr(self, "factory"),
             "card_factory": (
                 self.factory.__class__.__name__
                 if hasattr(self, "factory") else None
