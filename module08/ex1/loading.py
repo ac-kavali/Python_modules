@@ -1,5 +1,7 @@
 import sys
 import importlib
+import requests
+
 
 REQUIRED_PACKAGES = ["pandas", "requests", "matplotlib", "numpy"]
 
@@ -38,20 +40,32 @@ def analyze_data():
 
     print("\nAnalyzing Matrix data...")
 
-# generate fake data (1000 numbers) in range 0-100 stored in data
+    url = "https://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=100"
+    response = requests.get(url)
+
+    if response.status_code != 200:
+        print("Error fetching data")
+        return
+
+    numbers = response.json()  # list of 100 numbers
+
+    # convert list to numpy array for numerical processing
+    np_numbers = np.array(numbers)
+
     data = pd.DataFrame({
-        "signal_strength": np.random.randint(1, 100, 1000)
+        "signal_strength": np_numbers
     })
 
     print(f"Processing {len(data)} data points...")
 
-    avg_signal = data["signal_strength"].mean()
+    # compute average using numpy
+    avg_signal = np.mean(np_numbers)
     print(f"Average Signal Strength: {avg_signal:.2f}")
 
     print("Generating visualization...")
 
     plt.figure()    # new blank canvas for plotting.
-    plt.hist(data["signal_strength"], bins=20)  # create le histogram bare
+    plt.hist(np_numbers, bins=20)  # create the histogram bare
     plt.title("Matrix Signal Distribution")     # the plot title
     plt.xlabel("Signal Strength")               # labeling the x (__) line
     plt.ylabel("Frequency")                     # labeling the y (|) line
