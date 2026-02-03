@@ -38,4 +38,3 @@ print("[OK] .env file properly configured")
 print("[OK] Production overrides available")
 
 print("\nThe Oracle sees all configurations.")
-
