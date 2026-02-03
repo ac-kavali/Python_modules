@@ -38,6 +38,7 @@ def analyze_data():
 
     print("\nAnalyzing Matrix data...")
 
+# generate fake data (1000 numbers) in range 0-100 stored in data
     data = pd.DataFrame({
         "signal_strength": np.random.randint(1, 100, 1000)
     })
@@ -49,17 +50,17 @@ def analyze_data():
 
     print("Generating visualization...")
 
-    plt.figure()
-    plt.hist(data["signal_strength"], bins=20)
-    plt.title("Matrix Signal Distribution")
-    plt.xlabel("Signal Strength")
-    plt.ylabel("Frequency")
-    plt.savefig("matrix_analysis.png")
+    plt.figure()    # new blank canvas for plotting.
+    plt.hist(data["signal_strength"], bins=20)  # create le histogram bare
+    plt.title("Matrix Signal Distribution")     # the plot title
+    plt.xlabel("Signal Strength")               # labeling the x (__) line
+    plt.ylabel("Frequency")                     # labeling the y (|) line
+    plt.savefig("matrix_analysis.png")          # data saving file
 
     print("\nAnalysis complete!")
     print("Results saved to: matrix_analysis.png")
 
 
 if __name__ == "__main__":
-    versions = check_dependencies()
-    analyze_data()
+    versions = check_dependencies()      # list of versions if everything installed else, unknow.
+    analyze_data()                       # create fake data and analyze it using a plot.
