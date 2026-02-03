@@ -21,6 +21,9 @@ print(f"Current Python: {python_path}")
 if in_venv:
     print(f"Virtual Environment: {os.path.basename(prefix)}")
     print(f"Environment Path: {prefix}")
+    print("\nSUCCESS: You're in an isolated environment!"
+          " Safe to install packages without affecting"
+          " the global system.\n")
 else:
     print("Virtual Environment: None detected")
 

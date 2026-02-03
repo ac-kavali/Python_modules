@@ -1,9 +1,9 @@
 import sys
 import importlib
-import requests
 
 
 REQUIRED_PACKAGES = ["pandas", "requests", "matplotlib", "numpy"]
+
 
 def check_dependencies():
     print("LOADING STATUS: Loading programs...\n")
@@ -37,10 +37,10 @@ def analyze_data():
     import pandas as pd
     import numpy as np
     import matplotlib.pyplot as plt
-
+    import requests
     print("\nAnalyzing Matrix data...")
 
-    url = "https://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=100"
+    url = "https://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=100" # noqa 401
     response = requests.get(url)
 
     if response.status_code != 200:
@@ -64,17 +64,23 @@ def analyze_data():
 
     print("Generating visualization...")
 
-    plt.figure()    # new blank canvas for plotting.
-    plt.hist(np_numbers, bins=20)  # create the histogram bare
-    plt.title("Matrix Signal Distribution")     # the plot title
-    plt.xlabel("Signal Strength")               # labeling the x (__) line
-    plt.ylabel("Frequency")                     # labeling the y (|) line
-    plt.savefig("matrix_analysis.png")          # data saving file
+    # new blank canvas for plotting.
+    plt.figure()
+    plt.hist(np_numbers, bins=20)
+    plt.title("Matrix Signal Distribution")
+    # labeling the x (__) line
+    plt.xlabel("Signal Strength")
+    # labeling the y (|) line
+    plt.ylabel("Frequency")
+    # data saving file
+    plt.savefig("matrix_analysis.png")
 
     print("\nAnalysis complete!")
     print("Results saved to: matrix_analysis.png")
 
 
 if __name__ == "__main__":
-    versions = check_dependencies()      # list of versions if everything installed else, unknow.
-    analyze_data()                       # create fake data and analyze it using a plot.
+    # list of versions if everything installed else, unknow.
+    versions = check_dependencies()
+    # create fake data and analyze it using a plot.
+    analyze_data()
