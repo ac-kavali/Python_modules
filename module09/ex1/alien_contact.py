@@ -55,17 +55,16 @@ def main():
         message_received="Greetings from Zeta Reticuli",
     )
 
+    print("Valid contact report:")
     print("Valid station created:")
     print(f"ID: {valid_contact.contact_id}")
     print(f"Type: {valid_contact.contact_type}")
     print(f"Location: {valid_contact.location} people")
     print(f"Signal: {valid_contact.signal_strength}%")
     print(f"Duration: {valid_contact.duration_minutes}%")
-    print(f"Status: {'Operational' if station.is_operational else 'Not Operational'}")
-    print(f"Last maintenance: {station.last_maintenance}")
+    print(f"Witnesses: {valid_contact.witness_count}")
+    print(f"Message: {valid_contact.message_received}")
 
-    print("Valid contact report:")
-    print(valid_contact)
 
     print("\n" + "=" * 38)
 
@@ -77,7 +76,7 @@ def main():
             contact_type=ContactType.telepathic,
             signal_strength=5.0,
             duration_minutes=30,
-            witness_count=1,
+            witness_count=1,  #excepted error Witnesses should be more than 1 and <= 100
         )
     except Exception as e:
         print("Expected validation error:")
