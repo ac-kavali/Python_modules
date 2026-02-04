@@ -3,7 +3,6 @@ from typing import Optional
 
 from pydantic import BaseModel, Field, ValidationError
 
-
 class SpaceStation(BaseModel):
     station_id: str = Field(min_length=3, max_length=10)
     name: str = Field(min_length=1, max_length=50)
@@ -19,8 +18,7 @@ def main() -> None:
     print("Space Station Data Validation")
     print("=" * 40)
 
-    time_str = "2026-02-04 12:30:00"
-    dt = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
+    time = datetime.strptime("2024-01-15T10:30:00", "%Y-%m-%dT%H:%M:%S")
     try:
         station = SpaceStation(
             station_id="ISS001",
@@ -28,7 +26,7 @@ def main() -> None:
             crew_size=6,
             power_level=85.5,
             oxygen_level=92.3,
-            last_maintenance= dt,
+            last_maintenance=time,
             is_operational=True,
             notes="Primary orbital research station."
         )
@@ -55,7 +53,7 @@ def main() -> None:
             crew_size=50,  # invalid: must be <= 20
             power_level=120.0,  # invalid: must be <= 100
             oxygen_level=50.0,
-            last_maintenance="2024-01-15T10:30:00"
+            last_maintenance=time
         )
         print(invalid_station)
 
