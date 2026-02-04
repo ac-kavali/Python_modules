@@ -55,6 +55,15 @@ def main():
         message_received="Greetings from Zeta Reticuli",
     )
 
+    print("Valid station created:")
+    print(f"ID: {valid_contact.contact_id}")
+    print(f"Type: {valid_contact.contact_type}")
+    print(f"Location: {valid_contact.location} people")
+    print(f"Signal: {valid_contact.signal_strength}%")
+    print(f"Duration: {valid_contact.duration_minutes}%")
+    print(f"Status: {'Operational' if station.is_operational else 'Not Operational'}")
+    print(f"Last maintenance: {station.last_maintenance}")
+
     print("Valid contact report:")
     print(valid_contact)
 
