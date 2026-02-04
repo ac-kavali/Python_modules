@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import Enum
 from typing import List
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, Field, model_validator, ValidationError
 
 
 class Rank(str, Enum):
@@ -103,7 +103,53 @@ def main():
     )
 
     print("Valid mission created:")
-    print(mission)
+    print(f"Mission: {mission.mission_name}")
+    print(f"ID: {mission.mission_id}")
+    print(f"Destination: {mission.destination} ")
+    print(f"Duration: {mission.duration_days} days")
+    print(f"Budget: ${mission.budget_millions}M")
+    print(f"Crew size: {len(mission.crew)}")
+    print(f"Crew members:")
+    for member in crew:
+        print(f"- {member.name} ({member.rank}) - {member.specialization}")
+    print()
+    print("=" * 40)
+
+    # Testing wrong crew
+    crew = [
+        CrewMember(
+            member_id="C101",
+            name="Mark Davis",
+            rank=Rank.lieutenant,
+            age=38,
+            specialization="Navigation",
+            years_experience=10,
+        ),
+        CrewMember(
+            member_id="C102",
+            name="Emma Brown",
+            rank=Rank.lieutenant,
+            age=32,
+            specialization="Engineering",
+            years_experience=7,
+        ),
+    ]
+
+    try:
+        mission = SpaceMission(
+            mission_id="M2024_FAIL",
+            mission_name="Failed Leadership Mission",
+            destination="Mars",
+            launch_date=datetime.now(),
+            duration_days=500,
+            crew=crew,  # no commander/captain
+            budget_millions=1200.0,
+        )
+    except ValidationError as e:
+        print("Expected validation error:")
+        print("Mission must have at least one Commander or Captain")
+
+
 
 
 if __name__ == "__main__":
