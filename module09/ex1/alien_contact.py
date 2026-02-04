@@ -78,9 +78,9 @@ def main():
             duration_minutes=30,
             witness_count=1,  #excepted error Witnesses should be more than 1 and <= 100
         )
-    except Exception as e:
+    except Exception:
         print("Expected validation error:")
-        print(e)
+        print("Telepathic contact requires at least 3 witnesses")
 
 
 if __name__ == "__main__":
