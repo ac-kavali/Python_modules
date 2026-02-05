@@ -1,9 +1,10 @@
-#!/usr/bin/env python3
-
 
 def mage_counter() -> callable:
     count = 0
-
+    """
+    Once the function created the count initialization being executed
+    the counter(fun) takes the control 
+    """
     def counter():
         nonlocal count
         count += 1
@@ -14,7 +15,10 @@ def mage_counter() -> callable:
 
 def spell_accumulator(initial_power: int) -> callable:
     total_power = initial_power
-
+    """
+    Once ... total is initialized and each accumulator(fun) being
+    called with an amount, it be added to the total
+    """
     def accumulator(amount: int) -> int:
         nonlocal total_power
         total_power += amount
@@ -24,12 +28,19 @@ def spell_accumulator(initial_power: int) -> callable:
 
 
 def enchantment_factory(enchantment_type: str) -> callable:
+    """
+    Lambda do the role of another function that takes item name
+    and return it like enchantment + item name
+    """
     return lambda item_name: f"{enchantment_type} {item_name}"
 
 
 def memory_vault() -> dict[str, callable]:
     memory = {}
-
+    """
+    This fun return a dict of functions
+    used like func[fun_name](arguments)
+    """
     def store(key: str, value):
         nonlocal memory
         memory[key] = value
@@ -40,9 +51,7 @@ def memory_vault() -> dict[str, callable]:
     return {"store": store, "recall": recall}
 
 
-# ======================
 # TESTING LIKE SUBJECT
-# ======================
 if __name__ == "__main__":
 
     print("Testing mage counter...")
@@ -52,25 +61,9 @@ if __name__ == "__main__":
     print(f"Call 3: {counter()}")
     print()
 
-    print("Testing spell accumulator...")
-    accumulator = spell_accumulator(50)
-    print(accumulator(10))
-    print(accumulator(20))
-    print(accumulator(5))
-    print()
-
     print("Testing enchantment factory...")
     flaming = enchantment_factory("Flaming")
     frozen = enchantment_factory("Frozen")
     print(flaming("Sword"))
     print(frozen("Shield"))
     print()
-
-    print("Testing memory vault...")
-    vault = memory_vault()
-    vault["store"]("spell", "Fireball")
-    vault["store"]("power", 99)
-
-    print(vault["recall"]("spell"))
-    print(vault["recall"]("power"))
-    print(vault["recall"]("unknown"))
