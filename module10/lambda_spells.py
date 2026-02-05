@@ -43,28 +43,37 @@ def mage_stats(mages: List[Dict]) -> Dict:
     }
 
 
-# Optional quick test (allowed: print)
 if __name__ == "__main__":
+
+    # ================DATA BLOCK=========================================
     artifacts = [
-        {"name": "Crystal Orb", "power": 85, "type": "magic"},
-        {"name": "Fire Staff", "power": 92, "type": "fire"},
+            {'name': 'Fire Staff', 'power': 92, 'type': 'focus'},
+            {'name': 'Light Prism', 'power': 33, 'type': 'focus'},
+            {'name': 'Crystal Orb', 'power': 85, 'type': 'relic'},
+            {'name': 'Lightning Rod', 'power': 23, 'type': 'accessory'},
     ]
 
     mages = [
-        {"name": "Aelin", "power": 70, "element": "fire"},
-        {"name": "Drake", "power": 95, "element": "lightning"},
-        {"name": "Nyx", "power": 40, "element": "shadow"},
+        {'name': 'Kai', 'power': 68, 'element': 'earth'},
+        {'name': 'Riley', 'power': 60, 'element': 'water'},
+        {'name': 'Riley', 'power': 97, 'element': 'wind'},
+        {'name': 'Storm', 'power': 91, 'element': 'water'},
+        {'name': 'Morgan', 'power': 61, 'element': 'light'}
     ]
 
-    spells = ["fireball", "heal", "shield"]
+    spells = ['meteor', 'blizzard', 'tornado', 'tsunami']
+    # ====================================================================
 
-    print("Sorted artifacts:", artifact_sorter(artifacts))
-    print("Filtered mages:", power_filter(mages, 60))
-    print("Transformed spells:", spell_transformer(spells))
-    print("Mage stats:", mage_stats(mages))
+    print("Testing artifact sorter...")
+    sorted_artifacts = artifact_sorter(artifacts)
+    print(f'{sorted_artifacts[0]["name"]}({sorted_artifacts[0]["power"]} '
+          f'power) comes before {sorted_artifacts[1]["name"]}'
+          f'({sorted_artifacts[1]["power"]} power)')
 
-
-
+    print("\nTesting Spell Transformer...")
+    formated_spells = spell_transformer(spells)
+    for spell in formated_spells:
+        print(spell + " ", end="")
 
 
 
