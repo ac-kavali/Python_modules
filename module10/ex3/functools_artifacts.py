@@ -1,13 +1,13 @@
-from functools import reduce, partial, lru_cache
+from functools import reduce, partial, lru_cache, singledispatch
 import operator
 
-
+ # Use operator
 def spell_reducer(spells: list[int], operation: str) -> int:
     operations = {
         "add": operator.add,
         "multiply": operator.mul,
-        "max": operator.max,
-        "min": operator.min,
+        "max": max,
+        "min": min,
     }
 
     if operation not in operations:
@@ -24,25 +24,46 @@ def partial_enchanter(base_enchantment: callable) -> dict[str, callable]:
     }
 
 
+
+
+def spell_dispatcher ():
+    """
+    Returns a single-dispatch spell system.
+    Handles int, str, and list types.
+    """
+
+    @singledispatch
+    def cast (spell):
+        raise TypeError(f"Unsupported spell type: {type(spell)}")
+
+    # Damage spell: int
+    @cast.register
+    def _ (damage: int):
+        return f"Dealt {damage} points of damage!"
+
+    # Enchantment spell: str
+    @cast.register
+    def _ (enchant: str):
+        return f"Casted {enchant} enchantment!"
+
+    # Multi-cast spell: list
+    @cast.register
+    def _ (spells: list):
+        results = []
+        for s in spells:
+            # recursively call the dispatcher on each element
+            results.append(cast(s))
+        return results
+
+    return cast
+
+
 @lru_cache(maxsize=None)
 def memoized_fibonacci(n: int) -> int:
     if n < 2:
         return n
     return memoized_fibonacci(n - 1) + memoized_fibonacci(n - 2)
 
-
-def spell_reducer(spells: list[int], operation: str) -> int:
-    operations = {
-        "add": operator.add,
-        "multiply": operator.mul,
-        "max": max,
-        "min": min,
-    }
-
-    if operation not in operations:
-        raise ValueError("Unsupported operation")
-
-    return reduce(lambda a, b: operations[operation](a, b), spells)
 
 
 # TESTING
