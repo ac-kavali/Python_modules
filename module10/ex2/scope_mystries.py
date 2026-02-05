@@ -3,7 +3,7 @@ def mage_counter() -> callable:
     count = 0
     """
     Once the function created the count initialization being executed
-    the counter(fun) takes the control 
+    the counter(fun) takes the control
     """
     def counter():
         nonlocal count
@@ -42,7 +42,7 @@ def memory_vault() -> dict[str, callable]:
     used like func[fun_name](arguments)
     """
     def store(key: str, value):
-        nonlocal memory
+        nonlocal memory  # noqa
         memory[key] = value
 
     def recall(key: str):

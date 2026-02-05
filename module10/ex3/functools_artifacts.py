@@ -1,7 +1,8 @@
 from functools import reduce, partial, lru_cache, singledispatch
 import operator
 
- # Use operator
+
+# Use operator
 def spell_reducer(spells: list[int], operation: str) -> int:
     operations = {
         "add": operator.add,
@@ -24,16 +25,14 @@ def partial_enchanter(base_enchantment: callable) -> dict[str, callable]:
     }
 
 
-
-
-def spell_dispatcher ():
+def spell_dispatcher():
     """
     Returns a single-dispatch spell system.
     Handles int, str, and list types.
     """
 
     @singledispatch
-    def cast (spell):
+    def cast(spell):
         raise TypeError(f"Unsupported spell type: {type(spell)}")
 
     # Damage spell: int
@@ -63,7 +62,6 @@ def memoized_fibonacci(n: int) -> int:
     if n < 2:
         return n
     return memoized_fibonacci(n - 1) + memoized_fibonacci(n - 2)
-
 
 
 # TESTING

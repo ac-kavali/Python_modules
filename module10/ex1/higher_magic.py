@@ -85,8 +85,8 @@ if __name__ == "__main__":
     print("Testing conditional caster...")
     conditional_spell = conditional_caster(is_enemy, fireball)
     # Then give it the target
-    print(conditional_spell("Dragon")) # dragon is an enemy
-    print(conditional_spell("Villager")) # Villager not, spell fizzled
+    print(conditional_spell("Dragon"))  # dragon is an enemy
+    print(conditional_spell("Villager"))  # Villager not, spell fizzled
     print()
 
     # Create function with spells to apply them to target

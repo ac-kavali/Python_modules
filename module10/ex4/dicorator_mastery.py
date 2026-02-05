@@ -2,11 +2,9 @@ import time
 from functools import wraps
 
 
-# --------------------------------------------------
 # spell_timer
-# --------------------------------------------------
 def spell_timer(func: callable) -> callable:
-    @wraps(func)
+    @wraps(func) # make the function a wrapper
     def wrapper(*args, **kwargs):
         print(f"Casting {func.__name__}...")
         start = time.time()
@@ -18,9 +16,7 @@ def spell_timer(func: callable) -> callable:
     return wrapper
 
 
-# --------------------------------------------------
 # power_validator
-# --------------------------------------------------
 def power_validator(min_power: int) -> callable:
     def decorator(func: callable) -> callable:
         @wraps(func)
@@ -35,9 +31,7 @@ def power_validator(min_power: int) -> callable:
     return decorator
 
 
-# --------------------------------------------------
 # retry_spell
-# --------------------------------------------------
 def retry_spell(max_attempts: int) -> callable:
     def decorator(func: callable) -> callable:
         @wraps(func)
@@ -49,7 +43,8 @@ def retry_spell(max_attempts: int) -> callable:
                 except Exception:
                     attempts += 1
                     print(
-                        f"Spell failed, retrying... (attempt {attempts}/{max_attempts})"
+                        f"Spell failed, retrying... "
+                        f"(attempt {attempts}/{max_attempts})"
                     )
             return f"Spell casting failed after {max_attempts} attempts"
 
@@ -58,9 +53,7 @@ def retry_spell(max_attempts: int) -> callable:
     return decorator
 
 
-# --------------------------------------------------
 # MageGuild class
-# --------------------------------------------------
 class MageGuild:
     @staticmethod
     def validate_mage_name(name: str) -> bool:
@@ -74,7 +67,7 @@ class MageGuild:
         return f"Successfully cast {spell_name} with {power} power"
 
 
-# TESTING (matches expected output style)
+# TESTING
 if __name__ == "__main__":
     print("Testing spell timer...")
 
