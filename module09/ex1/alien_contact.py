@@ -31,11 +31,15 @@ class AlienContact(BaseModel):
         if self.contact_type == ContactType.physical and not self.is_verified:
             raise ValueError("Physical contact reports must be verified")
 
-        if self.contact_type == ContactType.telepathic and self.witness_count < 3:
-            raise ValueError("Telepathic contact requires at least 3 witnesses")
+        if (self.contact_type == ContactType.telepathic
+                and self.witness_count < 3):
+            raise ValueError("Telepathic contact requires "
+                             "at least 3 witnesses")
 
-        if self.signal_strength > 7.0 and not self.message_received:
-            raise ValueError("Strong signals (>7.0) must include a received message")
+        if (self.signal_strength > 7.0
+                and not self.message_received):
+            raise ValueError("Strong signals (>7.0)"
+                             " must include a received message")
 
         return self
 
@@ -65,7 +69,6 @@ def main():
     print(f"Witnesses: {valid_contact.witness_count}")
     print(f"Message: {valid_contact.message_received}")
 
-
     print("\n" + "=" * 38)
 
     try:
@@ -76,7 +79,7 @@ def main():
             contact_type=ContactType.telepathic,
             signal_strength=5.0,
             duration_minutes=30,
-            witness_count=1,  #excepted error Witnesses should be more than 1 and <= 100
+            witness_count=1,  # excepted error Witnesses
         )
     except Exception:
         print("Expected validation error:")

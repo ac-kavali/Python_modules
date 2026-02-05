@@ -3,6 +3,7 @@ from typing import Optional
 
 from pydantic import BaseModel, Field, ValidationError
 
+
 class SpaceStation(BaseModel):
     station_id: str = Field(min_length=3, max_length=10)
     name: str = Field(min_length=1, max_length=50)
@@ -37,7 +38,7 @@ def main() -> None:
         print(f"Crew: {station.crew_size} people")
         print(f"Power: {station.power_level}%")
         print(f"Oxygen: {station.oxygen_level}%")
-        print(f"Status: {'Operational' if station.is_operational else 'Not Operational'}")
+        print(f"Status: {'Operational' if station.is_operational else 'Not Operational'}") # noqa
         print(f"Last maintenance: {station.last_maintenance}")
 
     except ValidationError as e:

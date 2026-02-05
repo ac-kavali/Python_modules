@@ -2,7 +2,7 @@ from datetime import datetime
 from enum import Enum
 from typing import List
 
-from pydantic import BaseModel, Field, model_validator, ValidationError
+from pydantic import BaseModel, Field, model_validator
 
 
 class Rank(str, Enum):
@@ -109,7 +109,7 @@ def main():
     print(f"Duration: {mission.duration_days} days")
     print(f"Budget: ${mission.budget_millions}M")
     print(f"Crew size: {len(mission.crew)}")
-    print(f"Crew members:")
+    print("Crew members:")
     for member in crew:
         print(f"- {member.name} ({member.rank}) - {member.specialization}")
     print()
@@ -145,11 +145,9 @@ def main():
             crew=crew,  # no commander/captain
             budget_millions=1200.0,
         )
-    except ValidationError as e:
+    except Exception:
         print("Expected validation error:")
         print("Mission must have at least one Commander or Captain")
-
-
 
 
 if __name__ == "__main__":
